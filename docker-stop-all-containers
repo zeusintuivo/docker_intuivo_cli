@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# @author Zeus Intuivo <zeus@intuivo.com>
+#
+
+red=`tput setaf 1`
+cyan=`tput setaf 6`
+blue23=`tput setaf 23`
+blue33=`tput setaf 33`
+blue30=`tput setaf 33`
+gray238=`tput setaf 238`
+yellow220=`tput setaf 220`
+green=`tput setaf 2`
+reset=`tput sgr0`
+
+# docker stop $(docker ps -a -q)
+echo "${blue23} docker stop \$(docker ps -a -q) ${reset}"
+
+ALL_CONTAINERS=$(docker ps -a -q)
+
+if [ ! -z "${ALL_CONTAINERS}" ] ; then
+  {
+    echo "${blue30} • ${blue23} docker stop ${ALL_CONTAINERS} ${reset}"
+    docker stop "${ALL_CONTAINERS}"
+    wait 
+    docker stop $(docker ps -a -q) 
+  }
+else
+  {
+    echo "${blue30} - empty - ${reset}"
+    echo "${blue30} • ${blue23} No found containers ${reset}"
+  }
+fi

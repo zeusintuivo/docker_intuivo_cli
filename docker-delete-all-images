@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# @author Zeus Intuivo <zeus@intuivo.com>
+#
+
+red=`tput setaf 1`
+cyan=`tput setaf 6`
+blue23=`tput setaf 23`
+blue33=`tput setaf 33`
+blue30=`tput setaf 33`
+gray238=`tput setaf 238`
+yellow220=`tput setaf 220`
+green=`tput setaf 2`
+reset=`tput sgr0`
+
+# docker rmi $(docker images -q)
+echo "${blue23} docker rmi \$(docker images -q) ${reset}"
+
+ALL_IMAGES=$(docker images -q)
+
+if [ ! -z "${ALL_IMAGES}" ] ; then
+  {
+    echo "${blue30} • ${blue23} docker rmi ${ALL_IMAGES} ${reset}"
+    docker rmi "${ALL_IMAGES}"
+    wait 
+    docker rmi $(docker images -q)
+  }
+else
+  {
+    echo "${blue30} - empty - ${reset}"
+    echo "${blue30} • ${blue23} No found images ${reset}"
+  }
+fi
