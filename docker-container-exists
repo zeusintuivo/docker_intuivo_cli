@@ -1,0 +1,8 @@
+result=$( sudo docker images -q $1 )
+
+if [[ -n "$result" ]]; then
+  echo "Container exists"
+else
+  echo "No such container"
+fi
+
