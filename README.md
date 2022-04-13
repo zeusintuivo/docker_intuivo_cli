@@ -5,6 +5,18 @@ just added then your path
 
 git clone https://github.com/zeusintuivo/docker_intuivo_cli
 
+# Usage
 Call each script as needed.
 They are self descriptive of what they do.
+
+### Example
+```Shell
+❯ docker-delete-all-volumes
+ docker rm $(docker volume ls )
+ •  docker rm DRIVER    VOLUME NAME
+local     5bf31cdeaab9dab7895f4ca79f5a8916_mysql
+
+Total reclaimed space: 22.66GB
+❯
+```
 
