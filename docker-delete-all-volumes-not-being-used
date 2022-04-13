@@ -18,13 +18,15 @@ echo "${blue23} docker rm \$(docker volume ls -qf  \"dangling=true\") ${reset}"
 
 DANGLING_VOLUMES=$(docker volume ls -qf  "dangling=true")
 
-if [ ! -z "${DANGLING_VOLUMES}" ] ; then
+if [ -n "${DANGLING_VOLUMES}" ] ; then
   {
     echo "${blue30} • ${blue23} docker rm ${DANGLING_VOLUMES} ${reset}"
     docker rm "${DANGLING_VOLUMES}"
     wait
     # shellcheck disable=SC2046
     docker rm $(docker volume ls -qf  "dangling=true")
+    wait
+    docker volume prune
   }
 else
   {
