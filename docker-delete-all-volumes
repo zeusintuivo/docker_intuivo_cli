@@ -13,9 +13,9 @@ yellow220=`tput setaf 220`
 green=`tput setaf 2`
 reset=`tput sgr0`
 
-echo "${blue23} docker rm \$(docker volume ls -qf ) ${reset}"
+echo "${blue23} docker rm \$(docker volume ls ) ${reset}"
 
-DANGLING_VOLUMES=$(docker volume ls -qf)
+DANGLING_VOLUMES=$(docker volume ls )
 
 if [ -n "${DANGLING_VOLUMES}" ] ; then
   {
@@ -23,7 +23,7 @@ if [ -n "${DANGLING_VOLUMES}" ] ; then
     docker rm "${DANGLING_VOLUMES}"
     wait
     # shellcheck disable=SC2046
-    docker rm $(docker volume ls -qf)
+    docker rm $(docker volume ls )
     wait
     docker volume prune
   }
