@@ -13,7 +13,6 @@ yellow220=`tput setaf 220`
 green=`tput setaf 2`
 reset=`tput sgr0`
 
-# docker rmi $(docker images -q -f "dangling=true")
 echo "${blue23} docker rmi \$(docker images -q -f \"dangling=true\") ${reset}"
 
 DANGLING_IMAGES=$(docker images -q -f "dangling=true")
