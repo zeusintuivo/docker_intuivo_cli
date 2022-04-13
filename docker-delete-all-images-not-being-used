@@ -23,6 +23,7 @@ if [ ! -z "${DANGLING_IMAGES}" ] ; then
     echo "${blue30} • ${blue23} docker rmi ${DANGLING_IMAGES} ${reset}"
     docker rmi "${DANGLING_IMAGES}"
     wait
+    # shellcheck disable=SC2046
     docker rmi $(docker images -q -f "dangling=true")
   }
 else
